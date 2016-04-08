@@ -9,7 +9,9 @@
 var fs = require('fs'),
     system = require('system'),
     page = require('webpage').create(),
-    files = JSON.parse(system.stdin.read()),
+    args = JSON.parse(system.stdin.read()),
+	files = args.files,
+	size = args.size,
     total = files.length,
     next = 0,
 
@@ -30,12 +32,10 @@ var nextFile = function()
     frag.innerHTML = svgdata;
 
     svg = frag.querySelector('svg');
-    width = svg.getAttribute('width');
-    height = svg.getAttribute('height');
 
     page.viewportSize = {
-        width: parseFloat(width),
-        height: parseFloat(height)
+        width: size,
+        height: size
     };
 
     // page.open('data:image/svg+xml;utf8,' + svgdata, function(status)

@@ -105,7 +105,7 @@ module.exports = function(grunt)
             phantomjs.path,
             [ path.resolve(__dirname, 'lib/svg2png.js') ]
         );
-        spawn.stdin.write(JSON.stringify(files));
+        spawn.stdin.write(JSON.stringify({ files: files, size: this.data.options.size}));
         spawn.stdin.end();
 
         spawn.stdout.on('data', function(buffer)
